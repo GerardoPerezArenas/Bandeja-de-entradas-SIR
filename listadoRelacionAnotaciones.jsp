@@ -128,7 +128,7 @@
     %>
   
     <% /* Recuperar el vector de anotaciones de la sesion. */
-        // #262348: Se comprueba si hay anotaciones para establecer una variable que dará valor al atributo disabled del nuevo botón
+        // #262348: Se comprueba si hay anotaciones para establecer una variable que darï¿½ valor al atributo disabled del nuevo botï¿½n
         String activo = "";
         int numRelacionAnotaciones = ((Integer)session.getAttribute("NumRelacionAnotaciones")).intValue();
         if(numRelacionAnotaciones <= 0){
@@ -165,7 +165,7 @@
         listaSel = lista;
         var i=1;
         var z=0;
-        
+
         <logic:iterate id="campos" name="MantAnotacionRegistroForm" property="camposListados">
             <logic:equal name="campos" property="nomCampo" value="CHECK">
                 listaCampos[0] = ['<bean:write name="campos" property="codCampo" />',
@@ -183,11 +183,11 @@
                 i++;
             </logic:notEqual>
         </logic:iterate>
-        
+
         var cont;
         var destino="";
         var salida="";
-    
+
         //variables diferentes segun el tipo de anotacion
         <% if (("E".equals(tipoAnotacion)) || ("Relacion_E".equals(tipoAnotacion)) ){ %>
             destino="<%=descriptor.getDescripcion("rotulo_uniDestino")%>";
@@ -196,7 +196,7 @@
             destino="<%=descriptor.getDescripcion("rotulo_uniOrigen")%>";
             salida="<%=descriptor.getDescripcion("rotulo_salida")%>";
         <% } %>
-        
+
         //creamos la tabla segun los campos de la base de datos
         var cont=0;
         cols=[{title:"<i class='fa fa-check' aria-hidden='true'></i>", sWidth:parseInt(listaCampos[cont++][2])+ '%',sClass: "centrado"},
@@ -208,19 +208,19 @@
             {title:"<%=descriptor.getDescripcion("rotulo_tipo")%>", sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"},
             {title:"<%=descriptor.getDescripcion("rotulo_fechaPres")%>", sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"},
             {title:"<%=descriptor.getDescripcion("rotulo_fechaGrab")%>", sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"},
-            <% if (("E".equals(tipoAnotacion)) || ("Relacion_E".equals(tipoAnotacion))){ %>        
+            <% if (("E".equals(tipoAnotacion)) || ("Relacion_E".equals(tipoAnotacion))){ %>
                 {title:"<%=descriptor.getDescripcion("rotulo_remite")%>", sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"},
             <%}else{%>
-                {title:"<%=descriptor.getDescripcion("rotuloDestinatario")%>", sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"},          
-            <%}%>   
+                {title:"<%=descriptor.getDescripcion("rotuloDestinatario")%>", sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"},
+            <%}%>
             {title:"<%=descriptor.getDescripcion("rotulo_asunto")%>", sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"},
             {title:destino, sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"},
             {title:salida, sWidth:parseInt(listaCampos[cont++][2])+ '%', sClass: "centrado"}];
-    
-        for(cont=0;cont<listaCampos.length;cont++){   
+
+        for(cont=0;cont<listaCampos.length;cont++){
             if(listaCampos[cont][3]=='NO'){
                 cols[cont].sClass = "estiloOculto";
-            }else if(listaCampos[cont][3]=='SI'){ 
+            }else if(listaCampos[cont][3]=='SI'){
                 //guarda las columnas que estan activas ordenadas segun la posicion
                 listaOrden[cont]=listaCampos[cont][4];
                 //PARA QUE MANTEGA LA FLECHA EN EL ORDEN Y COLUMNA CORRECTA
@@ -228,7 +228,7 @@
                     columnaOrden=cont;
             }//if
         }//for
-        
+
         cargarComboFilasPagina();
         paginaActual = Math.ceil(1/lineasPagina);
         cargaPagina(paginaActual);
@@ -403,7 +403,7 @@
     
     function pulsarPrevioImprimir(opcion){
         var salida        = "";
-        var separador = '§¥';
+        var separador = 'Â§Â¥';
         var contador   = 0;
    
         for(i=0;i<valoresAnotacionesCheck.length;i++){
@@ -440,7 +440,7 @@
             <%--if(jsp_alerta("C","<%=descriptor.getDescripcion("msgErrorAnotacionSel")%>"+ " <%=descriptor.getDescripcion("msgImprimirTodoListado")%>")){	
                pulsarImprimirInforme('justificante_consulta',"");
             }--%>
-            jsp_alerta("A","Debe seleccionar al menos una anotación");
+            jsp_alerta("A","Debe seleccionar al menos una anotacion");
 
         }
     }
@@ -461,7 +461,7 @@
     }//pulsarImprimir
 
     function abrirInforme(nombre){
-        // A otra página que contiene el fichero PDF.
+        // A otra pï¿½gina que contiene el fichero PDF.
         if (!(nombre =='')){
             // PDFS NUEVA SITUACION
             var sourc = "<%=request.getContextPath()%>/jsp/verPdf.jsp?opcion=null&nombre="+nombre;
@@ -603,16 +603,16 @@ function mostrarError(codError){
              <input type="button" title='<%=descriptor.getDescripcion("toolTip_bImprimir")%>' class="botonGeneral" value='<%=descriptor.getDescripcion("gbImprimir")%>' name="cmdImprimir" onClick="pulsarPrevioImprimir(0);return false;">	
             <% if ("S".equals(tipoAnotacion) || "Relacion_S".equals(tipoAnotacion) ){ %>
             <logic:equal name="MantAnotacionRegistroForm" property="mostrarGenerarModelo" value="si">
-                <!-- #262348: Se añade el botón para registros de salidas si el properties lo permite -->
+                <!-- #262348: Se aï¿½ade el botï¿½n para registros de salidas si el properties lo permite -->
                 <input type="button" id="botonPeticionResp" class="botonMasLargo" title='<%=descriptor.getDescripcion("altModPetRpta")%>' alt='<%=descriptor.getDescripcion("altModPetRpta")%>' value="Imprimir mod. pet. resp." onClick="pulsarImprimirInforme('peticion_consulta');return false;" <%=activo%>/>        
             </logic:equal>
             <logic:equal name="MantAnotacionRegistroForm" property="generarJustificanteConsulta" value="si">
-                <!-- #288821: Se añade el botón para generar el justificante de registros de salida si el properties lo permite -->
+                <!-- #288821: Se aï¿½ade el botï¿½n para generar el justificante de registros de salida si el properties lo permite -->
                 <input type="button" id="botonJusticanteDesdeConsulta" class="botonLargo" title='<%=descriptor.getDescripcion("altJustificSalida")%>' alt='<%=descriptor.getDescripcion("altJustificSalida")%>' value='<%=descriptor.getDescripcion("etiq_btnImprJustif")%>' onClick="pulsarPrevioImprimir(2);return false;" <%=activo%>/>        
             </logic:equal>
             <% } else {%>
             <logic:equal name="MantAnotacionRegistroForm" property="generarJustificanteConsulta" value="si">
-                <!-- #288821: Se añade el botón para generar el justificante de registros de entrada si el properties lo permite -->
+                <!-- #288821: Se aï¿½ade el botï¿½n para generar el justificante de registros de entrada si el properties lo permite -->
                 <input type="button" id="botonJusticanteDesdeConsulta" class="botonLargo" title='<%=descriptor.getDescripcion("altJustificEntrada")%>' alt='<%=descriptor.getDescripcion("altJustificEntrada")%>' value='<%=descriptor.getDescripcion("etiq_btnImprJustif")%>' onClick="pulsarPrevioImprimir(2);return false;" <%=activo%>/>        
             </logic:equal>
             <% } %>
